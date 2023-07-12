@@ -4,11 +4,9 @@ const contentSchema = new Schema(
   {
     text: {
       type: String,
-      required: true,
     },
-    file: {
+    img: {
       type: String,
-      required: true,
     },
   },
   {

@@ -1,20 +1,13 @@
-import Content from "./contentModel.js";
+import { ContentService } from "./contentService.js";
 
 const createContent = async (req, res) => {
   try {
-    const { text } = req.body;
-    const filePath = req.file.path;
+    const data = req.body;
+    console.log(data);
 
-    // Create a new Content
-    const newContent = new Content({
-      text,
-      file: filePath,
-    });
+    const result = await ContentService.createContent(data);
 
-    // Save the content to the database
-    await newContent.save();
-
-    res.status(201).json(newContent);
+    res.status(201).json(result);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -22,16 +15,27 @@ const createContent = async (req, res) => {
 
 const getContents = async (req, res) => {
   try {
-    // Fetch all content from the database
-    const contents = await Content.find();
+    const result = await ContentService.getContents();
 
-    res.status(200).json(contents);
+    res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Contents not found !" });
   }
 };
 
-export default {
+const getSingleContents = async (req, res) => {
+  try {
+    const {id} = req.query
+    const result = await ContentService.getSingleContents(id);
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Contents not found !" });
+  }
+};
+
+export const ContentController = {
   createContent,
   getContents,
+  getSingleContents
 };
