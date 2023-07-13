@@ -25,7 +25,7 @@ const getContents = async (req, res) => {
 
 const getSingleContents = async (req, res) => {
   try {
-    const {id} = req.query
+     const { id } = req.params;
     const result = await ContentService.getSingleContents(id);
 
     res.status(200).json(result);
