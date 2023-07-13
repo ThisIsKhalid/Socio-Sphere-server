@@ -16,8 +16,14 @@ const getSingleContents = async (id) => {
   return result;
 };
 
+const getContentsByEmail = async (email) => {
+  const result = await Content.find({ email }).populate('email');
+  return result;
+};
+
 export const ContentService = {
   createContent,
   getContents,
   getSingleContents,
+  getContentsByEmail
 };

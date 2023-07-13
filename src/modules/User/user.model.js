@@ -9,6 +9,21 @@ const userSchema = new Schema(
       type: String,
       unique: true,
     },
+    location: {
+      type: String,
+    },
+    workPlace: {
+      type: String,
+    },
+    university: {
+      type: String,
+    },
+    github: {
+      type: String,
+    },
+    twitter: {
+      type: String,
+    },
   },
   {
     timestamps: true,

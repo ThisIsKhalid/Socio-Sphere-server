@@ -13,29 +13,34 @@ const createUser = async (req, res) => {
   }
 };
 
-// const getContents = async (req, res) => {
-//   try {
-//     const result = await ContentService.getContents();
+const updateUser = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const data = req.body;
 
-//     res.status(200).json(result);
-//   } catch (error) {
-//     res.status(500).json({ error: "Contents not found !" });
-//   }
-// };
+    const result = await UserService.updateUser(email, data);
 
-// const getSingleContents = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const result = await ContentService.getSingleContents(id);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
-//     res.status(200).json(result);
-//   } catch (error) {
-//     res.status(500).json({ error: "Contents not found !" });
-//   }
-// };
+const getSingleUser = async (req, res) => {
+  try {
+    const email = req.params.email;
+
+    const result = await UserService.getSingleUser(email);
+
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 
 export const UserController = {
   createUser,
-  //   getContents,
-  //   getSingleContents,
+  updateUser,
+  getSingleUser
 };

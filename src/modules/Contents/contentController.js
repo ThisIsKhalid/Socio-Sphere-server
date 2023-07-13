@@ -34,8 +34,21 @@ const getSingleContents = async (req, res) => {
   }
 };
 
+const getContentsByEmail = async (req, res) => {
+  try {
+    const email = req.query.email;
+    // console.log(email);
+    const result = await ContentService.getContentsByEmail(email);
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
 export const ContentController = {
   createContent,
   getContents,
-  getSingleContents
+  getSingleContents,
+  getContentsByEmail
 };

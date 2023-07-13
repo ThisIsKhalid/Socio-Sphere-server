@@ -12,18 +12,26 @@ const createUser = async (data) => {
   }
 };
 
-// const getContents = async () => {
-//   const results = await Content.find();
-//   return results;
-// };
+const updateUser = async (email, data) => {
+  const isExist = await User.findOne({ email });
 
-// const getSingleContents = async (id) => {
-//   const result = await Content.findById({ _id: id });
-//   return result;
-// };
+  if (isExist) {
+    const result = await User.findOneAndUpdate({ email }, data, {
+      new: true,
+    });
+
+    return result;
+  }
+};
+
+const getSingleUser = async (email) => {
+  const result = await User.findOne({ email });
+
+  return result;
+};
 
 export const UserService = {
   createUser,
-  //   getContents,
-  //   getSingleContents,
+  updateUser,
+  getSingleUser,
 };

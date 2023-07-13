@@ -8,6 +8,7 @@ router.post(
  ContentController.createContent
 );
 
+router.get("/my-contents", ContentController.getContentsByEmail);
 router.get("/:id", ContentController.getSingleContents);
 
 router.get("/", ContentController.getContents);

@@ -8,6 +8,15 @@ const contentSchema = new Schema(
     img: {
       type: String,
     },
+    email: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
+    photoURL: {
+      type: String,
+    },
   },
   {
     timestamps: true,
