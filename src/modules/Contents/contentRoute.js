@@ -11,6 +11,8 @@ router.post(
 router.get("/my-contents", ContentController.getContentsByEmail);
 router.get("/:id", ContentController.getSingleContents);
 
+router.patch('/:id', ContentController.updateContent)
+
 router.get("/", ContentController.getContents);
 
 export const contentRoutes = router;

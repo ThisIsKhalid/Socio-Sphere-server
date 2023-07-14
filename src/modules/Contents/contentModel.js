@@ -17,6 +17,10 @@ const contentSchema = new Schema(
     photoURL: {
       type: String,
     },
+    lovedCount: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,

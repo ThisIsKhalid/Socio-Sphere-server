@@ -46,9 +46,22 @@ const getContentsByEmail = async (req, res) => {
   }
 };
 
+const updateContent = async (req, res) => {
+   const { id } = req.params;
+   const { ...contentData } = req.body;
+  try {
+    const result = await ContentService.updateContent(id, contentData);
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
 export const ContentController = {
   createContent,
   getContents,
   getSingleContents,
-  getContentsByEmail
+  getContentsByEmail,
+  updateContent
 };

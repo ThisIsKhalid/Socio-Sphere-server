@@ -17,13 +17,25 @@ const getSingleContents = async (id) => {
 };
 
 const getContentsByEmail = async (email) => {
-  const result = await Content.find({ email }).populate('email');
+  const result = await Content.find({ email }).populate("email");
   return result;
+};
+
+const updateContent = async (id, contentData) => {
+  try {
+    const result = await Content.findByIdAndUpdate(id, contentData, {
+      new: true,
+    });
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const ContentService = {
   createContent,
   getContents,
   getSingleContents,
-  getContentsByEmail
+  getContentsByEmail,
+  updateContent,
 };
